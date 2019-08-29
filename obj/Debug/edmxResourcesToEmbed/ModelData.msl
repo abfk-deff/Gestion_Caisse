@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Gestion_CaisseModelStoreContainer" CdmEntityContainer="Gestion_CaisseEntities">
+    <EntitySetMapping Name="Approvisionnements">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.Approvisionnement">
+        <MappingFragment StoreEntitySet="Approvisionnement">
+          <ScalarProperty Name="idApprovisionnement" ColumnName="idApprovisionnement" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="montantApprovisionne" ColumnName="montantApprovisionne" />
+          <ScalarProperty Name="idCaisse" ColumnName="idCaisse" />
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="dateApprovisionnement" ColumnName="dateApprovisionnement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Caisses">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.Caisse">
+        <MappingFragment StoreEntitySet="Caisse">
+          <ScalarProperty Name="idCaisse" ColumnName="idCaisse" />
+          <ScalarProperty Name="somme" ColumnName="somme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Decaissements">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.Decaissement">
+        <MappingFragment StoreEntitySet="Decaissement">
+          <ScalarProperty Name="idDecaissement" ColumnName="idDecaissement" />
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="idCaisse" ColumnName="idCaisse" />
+          <ScalarProperty Name="idDemandeDecaissement" ColumnName="idDemandeDecaissement" />
+          <ScalarProperty Name="dateDecaissement" ColumnName="dateDecaissement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employes">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.Employe">
+        <MappingFragment StoreEntitySet="Employe">
+          <ScalarProperty Name="statut" ColumnName="statut" />
+          <ScalarProperty Name="sexe" ColumnName="sexe" />
+          <ScalarProperty Name="derniereConnexion" ColumnName="derniereConnexion" />
+          <ScalarProperty Name="mot_de_passe" ColumnName="mot_de_passe" />
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="nomEmploye" ColumnName="nomEmploye" />
+          <ScalarProperty Name="prenomEmploye" ColumnName="prenomEmploye" />
+          <ScalarProperty Name="numeroTelephone" ColumnName="numeroTelephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PieceJointes">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.PieceJointe">
+        <MappingFragment StoreEntitySet="PieceJointe">
+          <ScalarProperty Name="idDemandeDecaissement" ColumnName="idDemandeDecaissement" />
+          <ScalarProperty Name="cheminFichier" ColumnName="cheminFichier" />
+          <ScalarProperty Name="idPieceJointe" ColumnName="idPieceJointe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeDemandes">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.TypeDemande">
+        <MappingFragment StoreEntitySet="TypeDemande">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="idTypeDemande" ColumnName="idTypeDemande" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DemandeDecaissements">
+      <EntityTypeMapping TypeName="Gestion_CaisseModel.DemandeDecaissement">
+        <MappingFragment StoreEntitySet="DemandeDecaissement">
+          <ScalarProperty Name="idEmploye" ColumnName="idEmploye" />
+          <ScalarProperty Name="statutDemande" ColumnName="statutDemande" />
+          <ScalarProperty Name="idTypeDemande" ColumnName="idTypeDemande" />
+          <ScalarProperty Name="dateDemande" ColumnName="dateDemande" />
+          <ScalarProperty Name="montantDemande" ColumnName="montantDemande" />
+          <ScalarProperty Name="motif" ColumnName="motif" />
+          <ScalarProperty Name="idDemandeDecaissement" ColumnName="idDemandeDecaissement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

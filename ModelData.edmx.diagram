@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3eb762104620415c8480bf3a5be79518" Name="Diagramme1">
+        <EntityTypeShape EntityType="Gestion_CaisseModel.Approvisionnement" Width="1.5" PointX="3.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.Caisse" Width="1.5" PointX="2.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.Decaissement" Width="1.5" PointX="5.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.Employe" Width="1.5" PointX="0.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.sysdiagram" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_Approvisionnement_Caisse" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_Approvisionnement_Employe" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_Decaissement_Caisse" ManuallyRouted="false" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_Decaissement_Employe" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.PieceJointe" Width="1.5" PointX="5" PointY="5.625" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.TypeDemande" Width="1.5" PointX="7.125" PointY="4.875" />
+        <EntityTypeShape EntityType="Gestion_CaisseModel.DemandeDecaissement" Width="1.5" PointX="0.75" PointY="7.375" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_Decaissement_DemandeDecaissement" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_DemandeDecaissement_Employe" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_DemandeDecaissement_TypeDemande" />
+        <AssociationConnector Association="Gestion_CaisseModel.FK_PieceJointe_DemandeDecaissement" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

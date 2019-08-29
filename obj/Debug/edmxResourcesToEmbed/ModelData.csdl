@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Gestion_CaisseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Gestion_CaisseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Approvisionnements" EntityType="Gestion_CaisseModel.Approvisionnement" />
+    <EntitySet Name="Caisses" EntityType="Gestion_CaisseModel.Caisse" />
+    <EntitySet Name="Decaissements" EntityType="Gestion_CaisseModel.Decaissement" />
+    <EntitySet Name="Employes" EntityType="Gestion_CaisseModel.Employe" />
+    <EntitySet Name="sysdiagrams" EntityType="Gestion_CaisseModel.sysdiagram" />
+    <AssociationSet Name="FK_Approvisionnement_Caisse" Association="Gestion_CaisseModel.FK_Approvisionnement_Caisse">
+      <End Role="Caisse" EntitySet="Caisses" />
+      <End Role="Approvisionnement" EntitySet="Approvisionnements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Approvisionnement_Employe" Association="Gestion_CaisseModel.FK_Approvisionnement_Employe">
+      <End Role="Employe" EntitySet="Employes" />
+      <End Role="Approvisionnement" EntitySet="Approvisionnements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Decaissement_Caisse" Association="Gestion_CaisseModel.FK_Decaissement_Caisse">
+      <End Role="Caisse" EntitySet="Caisses" />
+      <End Role="Decaissement" EntitySet="Decaissements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Decaissement_Employe" Association="Gestion_CaisseModel.FK_Decaissement_Employe">
+      <End Role="Employe" EntitySet="Employes" />
+      <End Role="Decaissement" EntitySet="Decaissements" />
+    </AssociationSet>
+    <EntitySet Name="PieceJointes" EntityType="Gestion_CaisseModel.PieceJointe" />
+    <EntitySet Name="TypeDemandes" EntityType="Gestion_CaisseModel.TypeDemande" />
+    <EntitySet Name="DemandeDecaissements" EntityType="Gestion_CaisseModel.DemandeDecaissement" />
+    <AssociationSet Name="FK_Decaissement_DemandeDecaissement" Association="Gestion_CaisseModel.FK_Decaissement_DemandeDecaissement">
+      <End Role="DemandeDecaissement" EntitySet="DemandeDecaissements" />
+      <End Role="Decaissement" EntitySet="Decaissements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeDecaissement_Employe" Association="Gestion_CaisseModel.FK_DemandeDecaissement_Employe">
+      <End Role="Employe" EntitySet="Employes" />
+      <End Role="DemandeDecaissement" EntitySet="DemandeDecaissements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DemandeDecaissement_TypeDemande" Association="Gestion_CaisseModel.FK_DemandeDecaissement_TypeDemande">
+      <End Role="TypeDemande" EntitySet="TypeDemandes" />
+      <End Role="DemandeDecaissement" EntitySet="DemandeDecaissements" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PieceJointe_DemandeDecaissement" Association="Gestion_CaisseModel.FK_PieceJointe_DemandeDecaissement">
+      <End Role="DemandeDecaissement" EntitySet="DemandeDecaissements" />
+      <End Role="PieceJointe" EntitySet="PieceJointes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Approvisionnement">
+    <Key>
+      <PropertyRef Name="idApprovisionnement" />
+    </Key>
+    <Property Name="idApprovisionnement" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="source" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="montantApprovisionne" Type="Int32" />
+    <Property Name="idCaisse" Type="Int32" />
+    <Property Name="idEmploye" Type="Int32" />
+    <Property Name="dateApprovisionnement" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Caisse" Relationship="Gestion_CaisseModel.FK_Approvisionnement_Caisse" FromRole="Approvisionnement" ToRole="Caisse" />
+    <NavigationProperty Name="Employe" Relationship="Gestion_CaisseModel.FK_Approvisionnement_Employe" FromRole="Approvisionnement" ToRole="Employe" />
+  </EntityType>
+  <EntityType Name="Caisse">
+    <Key>
+      <PropertyRef Name="idCaisse" />
+    </Key>
+    <Property Name="idCaisse" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="somme" Type="Int32" />
+    <NavigationProperty Name="Approvisionnements" Relationship="Gestion_CaisseModel.FK_Approvisionnement_Caisse" FromRole="Caisse" ToRole="Approvisionnement" />
+    <NavigationProperty Name="Decaissements" Relationship="Gestion_CaisseModel.FK_Decaissement_Caisse" FromRole="Caisse" ToRole="Decaissement" />
+  </EntityType>
+  <EntityType Name="Decaissement">
+    <Key>
+      <PropertyRef Name="idDecaissement" />
+    </Key>
+    <Property Name="idDecaissement" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmploye" Type="Int32" />
+    <Property Name="idCaisse" Type="Int32" />
+    <Property Name="idDemandeDecaissement" Type="Int32" />
+    <Property Name="dateDecaissement" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Caisse" Relationship="Gestion_CaisseModel.FK_Decaissement_Caisse" FromRole="Decaissement" ToRole="Caisse" />
+    <NavigationProperty Name="Employe" Relationship="Gestion_CaisseModel.FK_Decaissement_Employe" FromRole="Decaissement" ToRole="Employe" />
+    <NavigationProperty Name="DemandeDecaissement" Relationship="Gestion_CaisseModel.FK_Decaissement_DemandeDecaissement" FromRole="Decaissement" ToRole="DemandeDecaissement" />
+  </EntityType>
+  <EntityType Name="Employe">
+    <Key>
+      <PropertyRef Name="idEmploye" />
+    </Key>
+    <Property Name="idEmploye" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="nomEmploye" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="prenomEmploye" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="statut" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="numeroTelephone" Type="Int32" />
+    <NavigationProperty Name="Approvisionnements" Relationship="Gestion_CaisseModel.FK_Approvisionnement_Employe" FromRole="Employe" ToRole="Approvisionnement" />
+    <NavigationProperty Name="Decaissements" Relationship="Gestion_CaisseModel.FK_Decaissement_Employe" FromRole="Employe" ToRole="Decaissement" />
+    <Property Type="String" Name="mot_de_passe" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="derniereConnexion" Precision="3" />
+    <Property Type="String" Name="sexe" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DemandeDecaissements" Relationship="Gestion_CaisseModel.FK_DemandeDecaissement_Employe" FromRole="Employe" ToRole="DemandeDecaissement" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Approvisionnement_Caisse">
+    <End Role="Caisse" Type="Gestion_CaisseModel.Caisse" Multiplicity="0..1" />
+    <End Role="Approvisionnement" Type="Gestion_CaisseModel.Approvisionnement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Caisse">
+        <PropertyRef Name="idCaisse" />
+      </Principal>
+      <Dependent Role="Approvisionnement">
+        <PropertyRef Name="idCaisse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Approvisionnement_Employe">
+    <End Role="Employe" Type="Gestion_CaisseModel.Employe" Multiplicity="0..1" />
+    <End Role="Approvisionnement" Type="Gestion_CaisseModel.Approvisionnement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="Approvisionnement">
+        <PropertyRef Name="idEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Decaissement_Caisse">
+    <End Role="Caisse" Type="Gestion_CaisseModel.Caisse" Multiplicity="0..1" />
+    <End Role="Decaissement" Type="Gestion_CaisseModel.Decaissement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Caisse">
+        <PropertyRef Name="idCaisse" />
+      </Principal>
+      <Dependent Role="Decaissement">
+        <PropertyRef Name="idCaisse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Decaissement_Employe">
+    <End Role="Employe" Type="Gestion_CaisseModel.Employe" Multiplicity="0..1" />
+    <End Role="Decaissement" Type="Gestion_CaisseModel.Decaissement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="Decaissement">
+        <PropertyRef Name="idEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PieceJointe">
+    <Key>
+      <PropertyRef Name="idPieceJointe" />
+    </Key>
+    <Property Type="Int32" Name="idPieceJointe" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Binary" Name="cheminFichier" MaxLength="Max" FixedLength="false" />
+    <Property Type="Int32" Name="idDemandeDecaissement" />
+    <NavigationProperty Name="DemandeDecaissement" Relationship="Gestion_CaisseModel.FK_PieceJointe_DemandeDecaissement" FromRole="PieceJointe" ToRole="DemandeDecaissement" />
+  </EntityType>
+  <EntityType Name="TypeDemande">
+    <Key>
+      <PropertyRef Name="idTypeDemande" />
+    </Key>
+    <Property Type="Int32" Name="idTypeDemande" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="type" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DemandeDecaissements" Relationship="Gestion_CaisseModel.FK_DemandeDecaissement_TypeDemande" FromRole="TypeDemande" ToRole="DemandeDecaissement" />
+  </EntityType>
+  <EntityType Name="DemandeDecaissement">
+    <Key>
+      <PropertyRef Name="idDemandeDecaissement" />
+    </Key>
+    <Property Type="Int32" Name="idDemandeDecaissement" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="motif" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="montantDemande" />
+    <Property Type="DateTime" Name="dateDemande" Precision="0" />
+    <Property Type="Int32" Name="idTypeDemande" />
+    <Property Type="String" Name="statutDemande" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="idEmploye" />
+    <NavigationProperty Name="Decaissements" Relationship="Gestion_CaisseModel.FK_Decaissement_DemandeDecaissement" FromRole="DemandeDecaissement" ToRole="Decaissement" />
+    <NavigationProperty Name="Employe" Relationship="Gestion_CaisseModel.FK_DemandeDecaissement_Employe" FromRole="DemandeDecaissement" ToRole="Employe" />
+    <NavigationProperty Name="TypeDemande" Relationship="Gestion_CaisseModel.FK_DemandeDecaissement_TypeDemande" FromRole="DemandeDecaissement" ToRole="TypeDemande" />
+    <NavigationProperty Name="PieceJointes" Relationship="Gestion_CaisseModel.FK_PieceJointe_DemandeDecaissement" FromRole="DemandeDecaissement" ToRole="PieceJointe" />
+  </EntityType>
+  <Association Name="FK_Decaissement_DemandeDecaissement">
+    <End Type="Gestion_CaisseModel.DemandeDecaissement" Role="DemandeDecaissement" Multiplicity="0..1" />
+    <End Type="Gestion_CaisseModel.Decaissement" Role="Decaissement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DemandeDecaissement">
+        <PropertyRef Name="idDemandeDecaissement" />
+      </Principal>
+      <Dependent Role="Decaissement">
+        <PropertyRef Name="idDemandeDecaissement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeDecaissement_Employe">
+    <End Type="Gestion_CaisseModel.Employe" Role="Employe" Multiplicity="0..1" />
+    <End Type="Gestion_CaisseModel.DemandeDecaissement" Role="DemandeDecaissement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employe">
+        <PropertyRef Name="idEmploye" />
+      </Principal>
+      <Dependent Role="DemandeDecaissement">
+        <PropertyRef Name="idEmploye" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DemandeDecaissement_TypeDemande">
+    <End Type="Gestion_CaisseModel.TypeDemande" Role="TypeDemande" Multiplicity="0..1" />
+    <End Type="Gestion_CaisseModel.DemandeDecaissement" Role="DemandeDecaissement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeDemande">
+        <PropertyRef Name="idTypeDemande" />
+      </Principal>
+      <Dependent Role="DemandeDecaissement">
+        <PropertyRef Name="idTypeDemande" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PieceJointe_DemandeDecaissement">
+    <End Type="Gestion_CaisseModel.DemandeDecaissement" Role="DemandeDecaissement" Multiplicity="0..1" />
+    <End Type="Gestion_CaisseModel.PieceJointe" Role="PieceJointe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DemandeDecaissement">
+        <PropertyRef Name="idDemandeDecaissement" />
+      </Principal>
+      <Dependent Role="PieceJointe">
+        <PropertyRef Name="idDemandeDecaissement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
